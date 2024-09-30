@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cmath>
 
+using namespace std;
+
 double gradusToRadians(double gradus, double minuta, double sekunda) {
     // Преобразовать угол из градусов, минут и секунд в десятичные градусы
     double decimalGradus = gradus + minuta / 60 + sekunda / 3600;
@@ -21,18 +23,18 @@ int main() {
     double gradus, minuta, sekunda;
 
     // Ввод угла в градусах, минутах и секундах
-    std::cout << "Введите угол в градусах: ";
-    std::cin >> gradus;
-    std::cout << "Введите угол в минутах: ";
-    std::cin >> minuta;
-    std::cout << "Введите угол в секундах: ";
-    std::cin >> sekunda;
+    cout << "Введите угол в градусах: ";
+    cin >> gradus;
+    cout << "Введите угол в минутах: ";
+    cin >> minuta;
+    cout << "Введите угол в секундах: ";
+    cin >> sekunda;
 
     // Преобразовать угол в радианы
     double radians = gradusToRadians(gradus, minuta, sekunda);
 
     // Вывод результата
-    std::cout << "Угол в радианах: " << radians << std::endl;
+    cout << "Угол в радианах: " << radians << std::endl;
 
     return 0;
 }
