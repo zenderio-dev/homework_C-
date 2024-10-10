@@ -19,6 +19,9 @@ double degreesMinutesSecondsToRadians(int degrees, int minutes, int seconds) {
 }
 
 int main() {
+    //Кириллица в терминале
+    setlocale(LC_ALL, "Russian");
+    
     int degrees, minutes, seconds;
 
     // Ввод угла
