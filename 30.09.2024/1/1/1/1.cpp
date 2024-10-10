@@ -1,51 +1,39 @@
-﻿// 1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include <iostream>
+﻿#include <iostream>
 #include <cmath>
 
-using namespace std;
+const double PI = 3.14159265358979323846;
 
-double gradusToRadians(double gradus, double minuta, double sekunda) {
-    // Преобразовать угол из градусов, минут и секунд в десятичные градусы
-    double decimalGradus = gradus + minuta / 60 + sekunda / 3600;
+// Функция для преобразования угла из градусов, минут и секунд в радианы
+double degreesMinutesSecondsToRadians(int degrees, int minutes, int seconds) {
+    // Преобразуем всё в десятичные градусы
+    double decimalDegrees = degrees + minutes / 60.0 + seconds / 3600.0;
 
-    // Преобразовать десятичные градусы в радианы
-    double radians = decimalGradus * 3.14 / 180;
+    // Приводим к диапазону от -360 до 360 для корректного преобразования
+    if (decimalDegrees < -360 || decimalDegrees > 360) {
+        decimalDegrees = fmod(decimalDegrees, 360);
+    }
 
+    // Преобразуем в радианы
+    double radians = decimalDegrees * (PI / 180.0);
     return radians;
 }
 
 int main() {
-    //Кириллица в терминале
-    setlocale(LC_ALL, "Russian");
+    int degrees, minutes, seconds;
 
-    double gradus, minuta, sekunda;
+    // Ввод угла
+    std::cout << "Введите угол (градусы, минуты, секунды): ";
+    std::cin >> degrees >> minutes >> seconds;
 
-    // Ввод угла в градусах, минутах и секундах
-    cout << "Введите угол в градусах: ";
-    cin >> gradus;
-    cout << "Введите угол в минутах: ";
-    cin >> minuta;
-    cout << "Введите угол в секундах: ";
-    cin >> sekunda;
+    // Проверка корректности ввода минут и секунд
+    if (minutes < 0 || minutes >= 60 || seconds < 0 || seconds >= 60) {
+        std::cerr << "Ошибка: минуты должны быть от 0 до 59, секунды от 0 до 59." << std::endl;
+        return 1;
+    }
 
-    // Преобразовать угол в радианы
-    double radians = gradusToRadians(gradus, minuta, sekunda);
-
-    // Вывод результата
-    cout << "Угол в радианах: " << radians << std::endl;
+    // Преобразование и вывод результата
+    double radians = degreesMinutesSecondsToRadians(degrees, minutes, seconds);
+    std::cout << "Угол в радианах: " << radians << std::endl;
 
     return 0;
 }
-
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
