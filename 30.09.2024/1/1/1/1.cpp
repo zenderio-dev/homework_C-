@@ -1,6 +1,8 @@
 ﻿#include <iostream>
 #include <cmath>
 
+using namespace std;
+
 const double PI = 3.14159265358979323846;
 
 // Функция для преобразования угла из градусов, минут и секунд в радианы
@@ -25,18 +27,18 @@ int main() {
     int degrees, minutes, seconds;
 
     // Ввод угла
-    std::cout << "Введите угол (градусы, минуты, секунды): ";
-    std::cin >> degrees >> minutes >> seconds;
+    cout << "Введите угол (градусы, минуты, секунды): ";
+    cin >> degrees >> minutes >> seconds;
 
     // Проверка корректности ввода минут и секунд
     if (minutes < 0 || minutes >= 60 || seconds < 0 || seconds >= 60) {
-        std::cerr << "Ошибка: минуты должны быть от 0 до 59, секунды от 0 до 59." << std::endl;
+        cerr << "Ошибка: минуты должны быть от 0 до 59, секунды от 0 до 59." << std::endl;
         return 1;
     }
 
     // Преобразование и вывод результата
     double radians = degreesMinutesSecondsToRadians(degrees, minutes, seconds);
-    std::cout << "Угол в радианах: " << radians << std::endl;
+    cout << "Угол в радианах: " << radians << std::endl;
 
     return 0;
 }
